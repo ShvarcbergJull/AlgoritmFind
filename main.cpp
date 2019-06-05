@@ -1,6 +1,9 @@
 #include <iostream>
 #include <ctime>
+//#include <locale.h>
+//#include <map>
 #include "DataAboutHuman.h"
+//#include "Sort.h"
 
 using namespace std;
 
@@ -31,15 +34,15 @@ int main()
 
 	start_time = clock();
 	cout << FindByNameEnum(humans_vec, name) << endl;
-	int searc1 = clock() - start_time;
+	double searc1 = clock() - start_time;
 	humans_vec.sort();
 
 	start_time = clock();
 	cout << FindByNameBin(humans_vec, name) << endl;
-	int searc2 = clock() - start_time;
+	double searc2 = clock() - start_time;
 	start_time = clock();
 	FindByNameMap(humans_map, name);
-	int searc3 = clock() - start_time;
+	double searc3 = clock() - start_time;
 	cout << endl;
 
 	cout << "Time: " << endl << "1 - " << searc1 << endl;
