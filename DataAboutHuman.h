@@ -1,5 +1,7 @@
 #pragma once
 #undef UNICODE
+//#include <iostream>
+//#include <string>
 #include <fstream>
 #include <Windows.h>
 #include <locale.h>
@@ -10,6 +12,8 @@
 #include "Human.h"
 
 using namespace std;
+
+Human::Human(string aname, string addr, string ph) : name(aname), data(addr, ph) {};
 
 bool readHumans(const char* filename, SortVector<Human>& humans)
 {
@@ -62,14 +66,21 @@ Human FindByNameEnum(const SortVector<Human>& humans, const string& name)
 		if (it->name == name)
 			return (*it);
 	}
-	throw FindExeption();
+	cout << "Такого имени нет в тел. книге" << endl;
+	Human hum;
+	return hum;
 }
 
 Human FindByNameBin(const SortVector<Human>& humans, string& name, int min, int max)
 {
 	int index = (min + max) / 2;
 	if (min > max)
-		throw FindExeption();
+	{
+		cout << "Такого имени нет в тел. книге" << endl;
+		Human hum;
+		return hum;
+		//throw FindExeption();
+	}
 	else if (humans[index].name == name)
 		return humans[index];
 	else if (humans[index].name > name)
